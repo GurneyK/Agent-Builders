@@ -37,6 +37,7 @@ function routeTo(path) {
 
 function getRoute() {
   const path = window.location.pathname.replace(BASE, "").replace(/^\/+|\/+$/g, "");
+  if (path === "login") return "login";
   if (path === "research-agent") return "research";
   if (path === "ds-agent") return "ds";
   return "home";
@@ -51,9 +52,109 @@ function App() {
     return () => window.removeEventListener("popstate", update);
   }, []);
 
+  if (route === "login") return <LoginPage />;
   if (route === "ds") return <DsAgentApp />;
   if (route === "research") return <ResearchAgentApp />;
   return <PrototypeHome />;
+}
+
+function LoginPage() {
+  return (
+    <main className="min-h-screen bg-gray-50 text-gray-900">
+      <div className="flex min-h-screen items-center justify-center px-6 py-10">
+        <section className="w-full max-w-[1040px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl shadow-gray-200/70 lg:grid lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="relative hidden min-h-[680px] bg-[#0A101A] p-10 text-white lg:block">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(21,112,239,0.32),transparent_32%),radial-gradient(circle_at_85%_15%,rgba(20,184,166,0.16),transparent_30%)]" />
+            <div className="relative flex h-full flex-col">
+              <div className="flex items-center gap-3">
+                <img src={`${BASE}h3l-logo.png`} alt="H3L Labs" className="h-10 w-auto" />
+                <div>
+                  <p className="text-sm font-semibold">Unilever H3L Labs Teams</p>
+                  <p className="text-xs text-slate-400">High fidelity agent demos</p>
+                </div>
+              </div>
+              <div className="mt-auto">
+                <p className="inline-flex rounded-md border border-sky-400/30 bg-sky-400/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-sky-200">
+                  Demo mode
+                </p>
+                <h1 className="mt-5 max-w-xl text-4xl font-semibold leading-tight tracking-tight">
+                  Start from login, then jump into the agent mockup screens.
+                </h1>
+                <p className="mt-4 max-w-lg text-sm leading-7 text-slate-300">
+                  This shareable page preserves the product entry point while keeping the demo frictionless for reviewers.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-8 sm:p-10">
+            <div className="mx-auto max-w-md">
+              <div className="flex justify-center">
+                <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#EFF8FF] text-[#1570EF]">
+                  <Bot className="h-8 w-8" />
+                </span>
+              </div>
+              <div className="mt-7 text-center">
+                <h2 className="text-3xl font-semibold tracking-tight">DS & Research Agent</h2>
+                <p className="mt-2 text-sm leading-6 text-gray-500">Template-driven experimentation platform</p>
+              </div>
+
+              <div className="mt-8 space-y-5 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                <label className="block">
+                  <span className="mb-2 block text-sm font-semibold text-gray-700">Email</span>
+                  <input
+                    className="h-12 w-full rounded-md border border-gray-300 px-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-[#1570EF] focus:ring-4 focus:ring-[#EFF8FF]"
+                    defaultValue="ds@company.com"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-2 block text-sm font-semibold text-gray-700">Password</span>
+                  <input
+                    type="password"
+                    className="h-12 w-full rounded-md border border-gray-300 px-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-[#1570EF] focus:ring-4 focus:ring-[#EFF8FF]"
+                    defaultValue="password"
+                  />
+                </label>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <button
+                    onClick={() => routeTo("ds-agent")}
+                    className="h-11 rounded-md bg-[#1570EF] text-sm font-semibold text-white shadow-sm transition hover:bg-[#175CD3]"
+                  >
+                    Log In
+                  </button>
+                  <button className="h-11 rounded-md border border-gray-300 bg-white text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50">
+                    Sign Up
+                  </button>
+                </div>
+                <button
+                  onClick={() => routeTo("ds-agent")}
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-md border border-[#84CAFF] bg-[#EFF8FF] text-sm font-semibold text-[#175CD3] transition hover:border-[#1570EF] hover:bg-white"
+                >
+                  View mockup screens
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+
+              <div className="mt-6 flex flex-wrap justify-center gap-3 text-xs text-gray-400">
+                <span>Local auth</span>
+                <span>SQLite + JWT</span>
+                <span>Demo mode</span>
+              </div>
+              <div className="mt-8 flex justify-center gap-3">
+                <button onClick={() => routeTo("")} className="text-sm font-semibold text-gray-500 hover:text-gray-900">
+                  Prototype hub
+                </button>
+                <span className="text-gray-300">/</span>
+                <button onClick={() => routeTo("research-agent")} className="text-sm font-semibold text-gray-500 hover:text-gray-900">
+                  Research Agent
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  );
 }
 
 function PrototypeHome() {
@@ -67,7 +168,13 @@ function PrototypeHome() {
             <p className="text-slate-400">Clickable demo links for the two agent apps.</p>
           </div>
         </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <HomeCard
+            title="Login Flow"
+            text="Start at the login page, then use the demo button to jump into the mock UI screens."
+            path="login"
+            icon={Bot}
+          />
           <HomeCard
             title="DS & Research Agent"
             text="Template library, time-series experiment setup, experiment history, and compare workflow."
