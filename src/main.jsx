@@ -20,6 +20,7 @@ import {
   PanelLeftOpen,
   Plus,
   Send,
+  ShieldCheck,
   Sparkles,
   Star,
   Tag,
@@ -63,78 +64,35 @@ function LoginPage() {
     <main className="min-h-screen bg-gray-50 text-gray-900">
       <div className="flex min-h-screen items-center justify-center px-6 py-6">
         <section className="w-full max-w-[1040px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl shadow-gray-200/70 lg:grid lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="relative hidden min-h-[620px] overflow-hidden bg-[#07111F] p-8 text-white lg:block">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_16%,rgba(21,112,239,0.34),transparent_28%),radial-gradient(circle_at_82%_12%,rgba(45,212,191,0.18),transparent_26%),linear-gradient(135deg,rgba(21,112,239,0.18),transparent_42%)]" />
-            <div className="absolute -right-24 top-20 h-72 w-72 rounded-full border border-sky-400/10" />
-            <div className="absolute -right-12 top-32 h-44 w-44 rounded-full border border-teal-300/10" />
+          <div className="relative hidden min-h-[620px] overflow-hidden bg-[#F4F0FF] p-8 text-gray-950 lg:block">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(21,112,239,0.16),transparent_30%),radial-gradient(circle_at_88%_22%,rgba(124,58,237,0.14),transparent_32%),linear-gradient(135deg,rgba(21,112,239,0.10),rgba(124,58,237,0.08)_48%,transparent)]" />
             <div className="relative flex h-full flex-col">
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <img src={`${BASE}h3l-logo.png`} alt="H3L Labs" className="h-10 w-auto" />
-                  <div>
-                    <p className="text-sm font-semibold">Unilever H3L Labs Teams</p>
-                    <p className="text-xs text-slate-400">High fidelity agent demos</p>
-                  </div>
-                </div>
-                <span className="rounded-md border border-sky-300/30 bg-sky-300/10 px-3 py-1.5 text-xs font-semibold text-sky-100">
-                  Live prototype
-                </span>
-              </div>
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#6941C6] text-white shadow-lg shadow-purple-200">
+                <ShieldCheck className="h-6 w-6" />
+              </span>
 
-              <div className="mt-8 max-w-[420px] rounded-2xl border border-white/10 bg-white/[0.04] p-4 shadow-2xl shadow-black/20 backdrop-blur">
-                <div className="mb-4 flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-200">Demo path</p>
-                    <p className="mt-1 text-sm text-slate-400">Click through the story in order</p>
-                  </div>
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1570EF]">
-                    <ArrowRight className="h-4 w-4" />
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 gap-2.5">
-                  {[
-                    ["01", "Login", "Entry point"],
-                    ["02", "Templates", "Choose workflow"],
-                    ["03", "Experiment", "Set parameters"],
-                    ["04", "Compare", "Review results"],
-                  ].map(([number, title, note], index) => (
-                    <div key={title} className="rounded-xl border border-white/10 bg-slate-950/35 p-2.5">
-                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-400/10 text-[11px] font-bold text-sky-200">
-                        {number}
-                      </span>
-                      <div className="mt-2 min-w-0">
-                        <p className="flex items-center justify-between gap-2 text-sm font-semibold">
-                          {title}
-                          {index < 3 ? <ChevronRight className="h-4 w-4 text-slate-500" /> : <Check className="h-4 w-4 text-emerald-300" />}
-                        </p>
-                        <p className="text-xs text-slate-500">{note}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-4 grid max-w-[420px] grid-cols-2 gap-3">
-                <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3">
-                  <p className="text-xl font-semibold">2</p>
-                  <p className="mt-1 text-xs text-slate-400">Agent apps</p>
-                </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3">
-                  <p className="text-xl font-semibold">9</p>
-                  <p className="mt-1 text-xs text-slate-400">Research screens</p>
-                </div>
-              </div>
-
-              <div className="mt-7">
-                <p className="inline-flex rounded-md border border-sky-400/30 bg-sky-400/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-sky-200">
-                  Demo mode
-                </p>
-                <h1 className="mt-4 max-w-xl text-3xl font-semibold leading-tight tracking-tight">
-                  Start at the front door, then open the full agent flow.
+              <div className="mt-9 max-w-[430px]">
+                <p className="text-sm font-semibold text-[#6941C6]">Unilever H3L Labs Teams</p>
+                <h1 className="mt-3 text-4xl font-semibold leading-tight tracking-tight text-gray-950">
+                  Access the agent prototype workspace.
                 </h1>
-                <p className="mt-3 max-w-lg text-sm leading-6 text-slate-300">
-                  A shareable login entry that keeps the review polished, quick, and easy to narrate.
+                <p className="mt-5 text-base leading-7 text-gray-700">
+                  A focused entry point for internal demos where clarity, trust, and low-friction access matter most.
                 </p>
+              </div>
+
+              <div className="mt-auto rounded-xl border border-[#D6BBFB] bg-white/50 p-5 shadow-sm backdrop-blur">
+                <div className="flex gap-3">
+                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#EEF4FF] text-[#1570EF]">
+                    <Check className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-[#6941C6]">Internal workspace</p>
+                    <p className="mt-2 text-sm leading-6 text-[#53389E]">
+                      Reviewers can sign in or jump straight into the mockup flow without extra setup.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
